@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.acorn.userJoin.Mapper"> <!-- 구분하기위해namespace사용 -->
+ 
+    <select id="selectUserCount" resultType="int">
+        select count(*) from tbl_user2
+		 where userid = #{userId}
+    </select>
+    
+    <select id="selectUserEmailCount"  resultType="int">
+    	select count(*) from tbl_user2
+    	where email = #{email}
+    </select>
+    
+    <!--  
+    <insert id="test" parameterType="userDTO">
+    	INSET INTO tbl_user2
+    	VALUES
+    	(#{userID}
+    	,#{userPassword}
+    	,#{userName}
+    	,#{email}
+    	,#{phoneNumber}
+    	,#{birth}
+    	,#{addr1}
+    	,#{addr2}
+    	,#{addr3}
+    	
+    	)
+    	<selectKey order="AFTER" resultType="int">
+    		select count(*) from tbl_user2
+		 	 where userid = #{userId}
+    	</selectKey>
+    </insert>
+	-->
+	
+	<select id="selectUserPhonenumber" resultType="int">
+		select count(*) from tbl_user2
+		where phoneNumber= #{phoneNumber}
+	</select>
+
+
+</mapper>
