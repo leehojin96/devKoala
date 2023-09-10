@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import = "java.util.*" %>
-     <%@ page import = "com.acorn.koala.dto.UserLogDto" %>
+     <%@ page import = "dto.UserLogDto" %>
      
      <% ArrayList<UserLogDto> list = (ArrayList<UserLogDto>)request.getAttribute("list"); %>
 <!DOCTYPE html>
