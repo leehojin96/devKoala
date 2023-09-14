@@ -21,20 +21,22 @@ import service.KoalaService;
 @Controller
 public class KoalaController {
 	
-	@Autowired
-	KoalaDao dao;
+//	@Autowired
+//	KoalaDao dao;
 	
 	@Autowired
 	ApiBooks apiBooks;
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String index( HttpServletRequest request, Model m) {
+	public String index( ) {
 		
+		/**
+		 * 임시로 주석처리
 		KoalaService s = new KoalaService(dao);
 		
 		ArrayList<BoarderDTO> list2 = s.selectBoard();
 		m.addAttribute("list2",list2);
-		
+		*/
 		
 		return "index";
 	}
