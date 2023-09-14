@@ -19,205 +19,117 @@ import org.springframework.stereotype.Component;
 import dto.BooksDetailDto;
 import dto.BooksDto;
 
-@Component
 public class ApiBooks {
 
-	//베스트셀러 API
-	public static String getBestseller(int start,int categoryId) {
-		
-		//http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbst20352313001&QueryType=Bestseller&MaxResults=50&start=1&SearchTarget=Book&output=xml&Version=20131101&Cover=Big&CategoryId=0;
-		String apiURL = "http://www.aladin.co.kr/ttb/api/ItemList.aspx"
-				+ "?"
-				+ "ttbkey=ttbst20352313001"
-				+ "&"
-				+ "QueryType=Bestseller"
-				+ "&"
-				+ "MaxResults=50"
-				+ "&"
-				+ "start="+start
-				+ "&"
-				+ "SearchTarget=Book"
-				+ "&"
-				+ "output=xml"//xml or JS
-				+ "&"
-				+ "Version=20131101"
-				+ "&"
-				+ "Cover=Big"
-				+ "&"
-				+ "CategoryId="+categoryId
-				;
-				
-		
+	// 베스트셀러 API
+	public static String getBestseller(int start, int categoryId) {
+
+		// http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbst20352313001&QueryType=Bestseller&MaxResults=50&start=1&SearchTarget=Book&output=xml&Version=20131101&Cover=Big&CategoryId=0;
+		String apiURL = "http://www.aladin.co.kr/ttb/api/ItemList.aspx" + "?" + "ttbkey=ttbst20352313001" + "&"
+				+ "QueryType=Bestseller" + "&" + "MaxResults=50" + "&" + "start=" + start + "&" + "SearchTarget=Book"
+				+ "&" + "output=xml"// xml or JS
+				+ "&" + "Version=20131101" + "&" + "Cover=Big" + "&" + "CategoryId=" + categoryId;
+
 		// 결과
 		Map<String, String> requestHeaders = new HashMap<String, String>();
 		String responseBody = get(apiURL, requestHeaders);
 
-		//XML -> JSONObecjt
+		// XML -> JSONObecjt
 		JSONObject resultObj = XML.toJSONObject(responseBody);
-		
+
 		// "object" key를 JSONObjext 객체로 생성
 		JSONObject result = resultObj.getJSONObject("object");
-		//System.out.println(result);
-		 
-		
+		// System.out.println(result);
+
 		return result.toString();
 	}
-	
-	//신간 도서 API
-	public static String getItemNewAll(int start,int categoryId) {
-		
-		//http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbst20352313001&QueryType=ItemNewAll&MaxResults=50&start=1&SearchTarget=Book&output=xml&Version=20131101&Cover=Big&CategoryId=0;
-		String apiURL = "http://www.aladin.co.kr/ttb/api/ItemList.aspx"
-				+ "?"
-				+ "ttbkey=ttbst20352313001"
-				+ "&"
-				+ "QueryType=ItemNewAll"
-				+ "&"
-				+ "MaxResults=50"
-				+ "&"
-				+ "start="+start
-				+ "&"
-				+ "SearchTarget=Book"
-				+ "&"
-				+ "output=xml"//xml or json
-				+ "&"
-				+ "Version=20131101"
-				+ "&"
-				+ "Cover=Big"
-				+ "&"
-				+ "CategoryId="+categoryId
-				;
-				
-		
-		// 결과
-				Map<String, String> requestHeaders = new HashMap<String, String>();
-				String responseBody = get(apiURL, requestHeaders);
 
-				//XML -> JSONObecjt
-				JSONObject resultObj = XML.toJSONObject(responseBody);
-				
-				// "object" key를 JSONObjext 객체로 생성
-				JSONObject result = resultObj.getJSONObject("object");
-				 
-				
-				return result.toString();
-	}
-	
-	//신간 인기 도서 API
-		public static String getItemNewSpecial(int start,int categoryId) {
-			
-			//http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbst20352313001&QueryType=ItemNewSpecial&MaxResults=50&start=1&SearchTarget=Book&output=xml&Version=20131101&Cover=Big&CategoryId=0;
-			String apiURL = "http://www.aladin.co.kr/ttb/api/ItemList.aspx"
-					+ "?"
-					+ "ttbkey=ttbst20352313001"
-					+ "&"
-					+ "QueryType=ItemNewSpecial"
-					+ "&"
-					+ "MaxResults=50"
-					+ "&"
-					+ "start="+start
-					+ "&"
-					+ "SearchTarget=Book"
-					+ "&"
-					+ "output=xml"//xml or json
-					+ "&"
-					+ "Version=20131101"
-					+ "&"
-					+ "Cover=Big"
-					+ "&"
-					+ "CategoryId="+categoryId
-					;
-					
-			
-			// 결과
-			Map<String, String> requestHeaders = new HashMap<String, String>();
-			String responseBody = get(apiURL, requestHeaders);
+	// 신간 도서 API
+	public static String getItemNewAll(int start, int categoryId) {
 
-			//XML -> JSONObecjt
-			JSONObject resultObj = XML.toJSONObject(responseBody);
-			
-			// "object" key를 JSONObjext 객체로 생성
-			JSONObject result = resultObj.getJSONObject("object");
-			 
-			
-			return result.toString();
-		}
-	
-	//도서 검색 api
-	public static String getSearch(int start,int categoryId,String query) {
-		
-		//http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbst20352313001&Query=물고기&QueryType=Title&MaxResults=50&start=1&SearchTarget=Book&output=xml&Version=20131101&Cover=Big&CategoryId=0
-		String apiURL = "http://www.aladin.co.kr/ttb/api/ItemSearch.aspx"
-				+ "?"
-				+ "ttbkey=ttbst20352313001"
-				+ "&"
-				+ "Query="+query
-				+ "&"
-				+ "QueryType=Title"
-				+ "&"
-				+ "MaxResults=50"
-				+ "&"
-				+ "start="+start
-				+ "&"
-				+ "SearchTarget=Book"
-				+ "&"
-				+ "output=xml"
-				+ "&"
-				+ "Version=20131101"
-				+ "&"
-				+ "Cover=Big"
-				+ "&"
-				+ "CategoryId="+categoryId
-				;
-				
-		
+		// http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbst20352313001&QueryType=ItemNewAll&MaxResults=50&start=1&SearchTarget=Book&output=xml&Version=20131101&Cover=Big&CategoryId=0;
+		String apiURL = "http://www.aladin.co.kr/ttb/api/ItemList.aspx" + "?" + "ttbkey=ttbst20352313001" + "&"
+				+ "QueryType=ItemNewAll" + "&" + "MaxResults=50" + "&" + "start=" + start + "&" + "SearchTarget=Book"
+				+ "&" + "output=xml"// xml or json
+				+ "&" + "Version=20131101" + "&" + "Cover=Big" + "&" + "CategoryId=" + categoryId;
+
 		// 결과
 		Map<String, String> requestHeaders = new HashMap<String, String>();
 		String responseBody = get(apiURL, requestHeaders);
 
-		//XML -> JSONObecjt
+		// XML -> JSONObecjt
 		JSONObject resultObj = XML.toJSONObject(responseBody);
-		
+
 		// "object" key를 JSONObjext 객체로 생성
 		JSONObject result = resultObj.getJSONObject("object");
-		
+
 		return result.toString();
 	}
-	
-	//도서 상세 페이지
-		public static String getDetail(String isbn) {
-			
-			//http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?ttbkey=ttbst20352313001&itemIdType=ISBN&ItemId=9791169472807&output=xml&Version=20131101&OptResult=ebookList,usedList,reviewList&Cover=Big
-			String apiURL = "http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx"
-					+ "?"
-					+ "ttbkey=ttbst20352313001"
-					+ "&"
-					+ "itemIdType=ISBN"
-					+ "&"
-					+ "ItemId="+isbn
-					+ "&"
-					+ "output=xml"
-					+ "&"
-					+ "Version=20131101"
-					+ "&"
-					+ "OptResult=ebookList,usedList,reviewList"
-					+ "&"
-					+ "Cover=Big"
-					;
-					
-			
-			// 결과
-			Map<String, String> requestHeaders = new HashMap<String, String>();
-			String responseBody = get(apiURL, requestHeaders);
 
-			//XML -> JSONObecjt
-			JSONObject resultObj = XML.toJSONObject(responseBody);
-			
-			// "object" key를 JSONObjext 객체로 생성
-			JSONObject result = resultObj.getJSONObject("object");
-			
-			return result.toString();
-		}
+	// 신간 인기 도서 API
+	public static String getItemNewSpecial(int start, int categoryId) {
+
+		// http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbst20352313001&QueryType=ItemNewSpecial&MaxResults=50&start=1&SearchTarget=Book&output=xml&Version=20131101&Cover=Big&CategoryId=0;
+		String apiURL = "http://www.aladin.co.kr/ttb/api/ItemList.aspx" + "?" + "ttbkey=ttbst20352313001" + "&"
+				+ "QueryType=ItemNewSpecial" + "&" + "MaxResults=50" + "&" + "start=" + start + "&"
+				+ "SearchTarget=Book" + "&" + "output=xml"// xml or json
+				+ "&" + "Version=20131101" + "&" + "Cover=Big" + "&" + "CategoryId=" + categoryId;
+
+		// 결과
+		Map<String, String> requestHeaders = new HashMap<String, String>();
+		String responseBody = get(apiURL, requestHeaders);
+
+		// XML -> JSONObecjt
+		JSONObject resultObj = XML.toJSONObject(responseBody);
+
+		// "object" key를 JSONObjext 객체로 생성
+		JSONObject result = resultObj.getJSONObject("object");
+
+		return result.toString();
+	}
+
+	// 도서 검색 api
+	public static String getSearch(int start, int categoryId, String query) {
+
+		// http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbst20352313001&Query=물고기&QueryType=Title&MaxResults=50&start=1&SearchTarget=Book&output=xml&Version=20131101&Cover=Big&CategoryId=0
+		String apiURL = "http://www.aladin.co.kr/ttb/api/ItemSearch.aspx" + "?" + "ttbkey=ttbst20352313001" + "&"
+				+ "Query=" + query + "&" + "QueryType=Title" + "&" + "MaxResults=50" + "&" + "start=" + start + "&"
+				+ "SearchTarget=Book" + "&" + "output=xml" + "&" + "Version=20131101" + "&" + "Cover=Big" + "&"
+				+ "CategoryId=" + categoryId;
+
+		// 결과
+		Map<String, String> requestHeaders = new HashMap<String, String>();
+		String responseBody = get(apiURL, requestHeaders);
+
+		// XML -> JSONObecjt
+		JSONObject resultObj = XML.toJSONObject(responseBody);
+
+		// "object" key를 JSONObjext 객체로 생성
+		JSONObject result = resultObj.getJSONObject("object");
+
+		return result.toString();
+	}
+
+	// 도서 상세 페이지
+	public static String getDetail(String isbn) {
+
+		// http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?ttbkey=ttbst20352313001&itemIdType=ISBN&ItemId=9791169472807&output=xml&Version=20131101&OptResult=ebookList,usedList,reviewList&Cover=Big
+		String apiURL = "http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx" + "?" + "ttbkey=ttbst20352313001" + "&"
+				+ "itemIdType=ISBN" + "&" + "ItemId=" + isbn + "&" + "output=xml" + "&" + "Version=20131101" + "&"
+				+ "OptResult=ebookList,usedList,reviewList" + "&" + "Cover=Big";
+
+		// 결과
+		Map<String, String> requestHeaders = new HashMap<String, String>();
+		String responseBody = get(apiURL, requestHeaders);
+
+		// XML -> JSONObecjt
+		JSONObject resultObj = XML.toJSONObject(responseBody);
+
+		// "object" key를 JSONObjext 객체로 생성
+		JSONObject result = resultObj.getJSONObject("object");
+
+		return result.toString();
+	}
 
 	//
 	private static String get(String apiUrl, Map<String, String> requestHeaders) {
@@ -251,68 +163,68 @@ public class ApiBooks {
 			throw new RuntimeException("연결이 실패했습니다. : " + apiUrl, e);
 		}
 	}
-	
+
 	//
-	private static String readBody(InputStream body){
-        InputStreamReader streamReader = new InputStreamReader(body);
-        
-        try (BufferedReader lineReader = new BufferedReader(streamReader)) {
-            StringBuilder responseBody = new StringBuilder(); 
-            
-            String line;
-            while ((line = lineReader.readLine()) != null) {
-                responseBody.append(line);
-            } 
-            
-            return responseBody.toString();
-        } catch (IOException e) {
-            throw new RuntimeException("API 응답을 읽는 데 실패했습니다.", e);
-        }
-    }
-	
-	//도서권수량 , 도서List -> map에 넣어서 return
-	public static HashMap<String , Object> fromJSONtoItems(String result){
-		
+	private static String readBody(InputStream body) {
+		InputStreamReader streamReader = new InputStreamReader(body);
+
+		try (BufferedReader lineReader = new BufferedReader(streamReader)) {
+			StringBuilder responseBody = new StringBuilder();
+
+			String line;
+			while ((line = lineReader.readLine()) != null) {
+				responseBody.append(line);
+			}
+
+			return responseBody.toString();
+		} catch (IOException e) {
+			throw new RuntimeException("API 응답을 읽는 데 실패했습니다.", e);
+		}
+	}
+
+	// 도서권수량 , 도서List -> map에 넣어서 return
+	public static HashMap<String, Object> fromJSONtoItems(String result) {
+
 		JSONObject rjson = new JSONObject(result);
-		 //System.out.println("rjson = "+ rjson);
-	 
-		 int count  =rjson.getInt("totalResults");
-		 //System.out.println("count = "+ count);
-		 
+		// System.out.println("rjson = "+ rjson);
+
+		int count = rjson.getInt("totalResults");
+		// System.out.println("count = "+ count);
+
 		JSONArray item = rjson.getJSONArray("item");
-		//System.out.println("item = "+ item);
-		
-		HashMap<String , Object>  map = new HashMap<>();
-		
+		// System.out.println("item = "+ item);
+
+		HashMap<String, Object> map = new HashMap<>();
+
 		ArrayList<BooksDto> booksDtoList = new ArrayList<BooksDto>();
-		for(int i = 0 ; i < item.length();i++) {
+		for (int i = 0; i < item.length(); i++) {
 			JSONObject Json = item.getJSONObject(i);
 			BooksDto booksDto = new BooksDto(Json);
-			
+
 			booksDtoList.add(booksDto);
 		}
-		
+
 		map.put("list", booksDtoList);
-		map.put("totalCnt" , count);
-		
-		return map;		
+		map.put("totalCnt", count);
+
+		return map;
 	}
-	
-	public BooksDetailDto fromJSONtoItems2(String result){
-		
+
+	public BooksDetailDto fromJSONtoItems2(String result) {
+
 		JSONObject rjson = new JSONObject(result);
-		
+
 		JSONObject item = rjson.getJSONObject("item");
-		//System.out.println(item);
-		
+		// System.out.println(item);
+
 		BooksDetailDto booksDetail = new BooksDetailDto(item);
-		
+
 		return booksDetail;
-		
+
 	}
-	
+
 	public static void main(String[] args) {
-		//String result = getItemNewSpecial(1,0);
-		//fromJSONtoItems(result);
+		// String result = getItemNewSpecial(1,0);
+		// fromJSONtoItems(result);
 	}
 }

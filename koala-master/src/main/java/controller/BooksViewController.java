@@ -20,7 +20,7 @@ public class BooksViewController {
 	ApiBooks apiBooks;
 
 	// 도서 종합 이동
-	@GetMapping(value = "/books")
+	@RequestMapping(value = "/books", method = RequestMethod.GET)
 	public String booksView() {
 
 		return "/books/books";

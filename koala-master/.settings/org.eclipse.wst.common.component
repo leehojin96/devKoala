@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-                                                    	
+                                                        	
+    
     
     
     
@@ -13,7 +14,8 @@
     
     
     <wb-module deploy-name="devKoala-1.0.0-BUILD-SNAPSHOT">
-                                                                                                                
+                                                                                                                        
+        
         
         
         
@@ -27,7 +29,8 @@
         
         
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
-                                                                                                        		
+                                                                                                                		
+        
         
         
         
@@ -41,19 +44,22 @@
         
         
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
-                                                
+                                                        
+        
         
         
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-                                                
+                                                        
+        
         
         
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-                                                                                                        		
+                                                                                                                		
+        
         
         
         
@@ -67,8 +73,9 @@
         
         
         <property name="java-output-path" value="target/classes"/>
-        <property name="context-root" value="Koala"/>
-                                                                                                        	
+        <property name="context-root" value="devKoala"/>
+                                                                                                                	
+    
     
     
     
@@ -82,7 +89,8 @@
     
     
     </wb-module>
-                                                    
+                                                        
+
 
 
 
