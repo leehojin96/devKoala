@@ -19,6 +19,7 @@ import service.LoginService;
 
 @Controller
 public class LoginController {
+	
 	@Autowired
 	UserDao dao;
 	
@@ -39,7 +40,7 @@ public class LoginController {
 		
 		
 	
-			LoginService service = new LoginService(dao);
+			LoginService service = new LoginService();
 			int result = service.loginUser(id, pw);
 			
 			if(result == 1 ){

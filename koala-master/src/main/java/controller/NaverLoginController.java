@@ -18,16 +18,13 @@ import service.NaverLoginService;
 
 @Controller
 public class NaverLoginController {
-	@Autowired
-	NaverDao dao;
-	
-	
+
 	@RequestMapping(value = "/naverLogin", method = RequestMethod.POST)
 	public String naverLogin(String id, String name, String email, String gender, String birthday, String birthyear, String mobile, String login_type, HttpServletRequest request) throws IOException {
 		
 		System.out.println(id + "/" + name + "/" + email + "/" + gender + "/" + birthday + "/" + birthyear + "/" + mobile + "/" + login_type);
 		
-		NaverLoginService service = new NaverLoginService(dao);
+		NaverLoginService service = new NaverLoginService();
 		int result = service.naverCheck(id);
 		// 가입 후 세션에 id 등록
 		if(result==0) {

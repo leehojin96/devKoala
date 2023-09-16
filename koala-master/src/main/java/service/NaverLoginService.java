@@ -1,13 +1,13 @@
 package service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import dao.NaverDao;
 
 public class NaverLoginService {
+	
+	@Autowired
 	NaverDao dao;
-
-	public NaverLoginService(NaverDao dao) {;
-		this.dao = dao;
-	}
 	
 
 	public int naverCheck(String id) {

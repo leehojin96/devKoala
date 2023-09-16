@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import dao.ApiBooks;
 
 @Configuration
-public class AladinApiConfig {
+public class AladinApiContorllerConfig {
 
 	@Bean
 	public ApiBooks apiBooks() {

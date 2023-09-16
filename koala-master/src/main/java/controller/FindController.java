@@ -17,9 +17,6 @@ import service.FindService;
 
 @Controller
 public class FindController {
-
-	@Autowired
-	FindDao dao;
 	
 	
 	@RequestMapping(value = "/finder", method = RequestMethod.GET)
@@ -34,7 +31,7 @@ public class FindController {
 		
 		String userphone = phone1+phone2+phone3;
 		
-		FindService service = new FindService(dao);
+		FindService service = new FindService();
 		String result = service.idFindService(name, date, useremail, userphone);
 		
 		String result2 = service.pwFindService(id, name, date, useremail, userphone);

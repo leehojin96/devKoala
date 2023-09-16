@@ -24,7 +24,7 @@ public class ChangePwController {
 	public String finder(String newpwd, String id, HttpServletResponse response) throws IOException {
 		response.setContentType("text/html;charset=utf-8");
 		
-		ChangePwService service = new ChangePwService(dao);
+		ChangePwService service = new ChangePwService();
 		service.pwChangeService(newpwd, id);
 	
 		

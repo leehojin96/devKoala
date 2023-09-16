@@ -1,16 +1,15 @@
 package service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import dao.MyPageDao;
 import dto.UserMypageDto;
 
 public class MypageService {
 
+	@Autowired
 	MyPageDao dao;
 
-	public MypageService(MyPageDao dao) {
-		this.dao = dao;
-	}
-	
 	public UserMypageDto MypageInfo(String userId) {
 		
 		UserMypageDto user = dao.mypageinfo(userId);

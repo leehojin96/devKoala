@@ -18,10 +18,7 @@ import service.LoginService;
 
 @Controller
 public class PopUpLoginController {
-	@Autowired
-	UserDao dao;
-	
-	
+
 	@RequestMapping(value = "/pop", method = RequestMethod.GET)
 	public String pop() {
 		
@@ -39,7 +36,7 @@ public class PopUpLoginController {
 	public String login2(String id, String pw, String login_type, HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
 		
-		LoginService service = new LoginService(dao);
+		LoginService service = new LoginService();
 		int result = service.loginUser(id, pw);
 
 		

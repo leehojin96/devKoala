@@ -17,17 +17,13 @@ import service.KaKaoLoginService;
 
 @Controller
 public class KaKaoLoginController {
-	@Autowired
-	KaKaoDao dao;
-	
-
 	
 	
 	@RequestMapping(value = "/kakaoLogin", method = RequestMethod.POST)
 	public String kakaoLogin(String id, String email, String nickname, String gender, String login_type, HttpServletRequest request) {
 		System.out.println(id +"/"+ email + "/"+ nickname + "/"+ gender  + "/"+ login_type );
 		
-		KaKaoLoginService service = new KaKaoLoginService(dao);
+		KaKaoLoginService service = new KaKaoLoginService();
 		int result = service.kakaoCheck(id);
 		// 가입 후 세션에 id 등록
 		if(result == 0) {

@@ -11,6 +11,7 @@ import dto.UserDTO;
 
 @Service("userService")
 public class UserService {
+	
 	@Autowired
 	UserJoinDAO userDAO;
 	

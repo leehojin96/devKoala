@@ -27,11 +27,8 @@ import service.MypageService;
 public class MyPageController {
 
 	@Autowired
-	UserDao dao;
+	MyPageDao mdao;
 	
-	//주석
-	
-	/*주석*/
 	
 	@RequestMapping(value = "/mypageenter", method = RequestMethod.GET)
 	public String mypage( HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -63,7 +60,7 @@ public class MyPageController {
 	public String mypage2( String id, String pw, HttpServletResponse response) throws IOException {
 		response.setContentType("text/html;charset=utf-8");
 		
-		LoginService service = new LoginService(dao);
+		LoginService service = new LoginService();
 		int result = service.loginUser(id, pw);
 		
 		if(result==1) {
@@ -82,9 +79,7 @@ public class MyPageController {
 		return null;
 	}
 	
-	@Autowired
-	MyPageDao mdao;
-	
+
 	@RequestMapping(value = "/mypagee", method = RequestMethod.GET)
 	public String mypagee( HttpServletRequest request) {
 		
@@ -98,7 +93,7 @@ public class MyPageController {
 		
 		if(userID != null && logintype.equals("0") ) {	// 로그인함
 			
-			MypageService service = new MypageService(mdao);
+			MypageService service = new MypageService();
 			UserMypageDto user = service.MypageInfo(userID);
 			
 			
@@ -139,7 +134,7 @@ public class MyPageController {
 	public String changephone(String phone, String newphone, HttpServletResponse response) throws IOException {
 		response.setContentType("text/html;charset=utf-8");
 		
-		MypageService service = new MypageService(mdao);
+		MypageService service = new MypageService();
 		int result = service.phonecheck(newphone);
 		
 		if(result == 1) {
@@ -162,7 +157,7 @@ public class MyPageController {
 	public String changeemail(String newemail, String u_id, HttpServletResponse response) throws IOException {
 		response.setContentType("text/html;charset=utf-8");
 		
-		MypageService service = new MypageService(mdao);
+		MypageService service = new MypageService();
 		service.changeemail(newemail, u_id);
 			
 		PrintWriter script = response.getWriter();

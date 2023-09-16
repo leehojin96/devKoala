@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 import controller.BooksViewController;
 import controller.KoalaController;
+import controller.UserController;
 import dao.ApiBooks;
 
 @Configuration
@@ -21,6 +22,11 @@ public class ControllerConfig {
 		return new KoalaController();
 	}
 	
+	@Bean
+	public UserController userController() {
+		return new UserController();
+	}
+
 	
 
 }
