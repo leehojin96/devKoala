@@ -11,6 +11,12 @@
 		<welcome-file>/WEB-INF/views/indexPoster.jsp</welcome-file>
 		<welcome-file>/WEB-INF/views/index.jsp</welcome-file>
 	</welcome-file-list>
+	
+	<!-- DB연결 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+	</context-param>
 
 	<!-- 서블릿 설정 -->
 	<servlet>
