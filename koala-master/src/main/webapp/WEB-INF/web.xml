@@ -36,10 +36,10 @@
 			<!-- contextConfiguration 초기화 파라미터의 값 지정 -->
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				config.MemberConfig
+				config.UserConfig
 				config.MvcConfig
 				config.ControllerConfig
-				config.AladinApiConfig
+				config.AladinApiContorllerConfig
 				config.BoardConfig
 				config.LoginApiConfig
 			</param-value>

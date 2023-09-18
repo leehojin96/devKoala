@@ -14,20 +14,6 @@ public class KoalaService {
 	KoalaDao dao;
 	String w_number;
 	
-	public KoalaService() {
-		// TODO Auto-generated constructor stub
-	}
-	public KoalaService(KoalaDao dao) {
-		this.dao = dao;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
 	public ArrayList<BoarderDTO> selectBoard(){
 		return dao.selectBoard();
 		

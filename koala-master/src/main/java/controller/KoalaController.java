@@ -20,9 +20,7 @@ import service.KoalaService;
 
 @Controller
 public class KoalaController {
-	
-//	@Autowired
-//	KoalaDao dao;
+
 	
 	@Autowired
 	ApiBooks apiBooks;

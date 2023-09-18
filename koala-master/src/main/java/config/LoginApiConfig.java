@@ -11,6 +11,8 @@ import service.NaverLoginService;
 @Configuration
 public class LoginApiConfig {
 
+	//dao 
+	
 	@Bean
 	public KaKaoDao kaKaoDao() {
 		return new KaKaoDao();
@@ -20,6 +22,10 @@ public class LoginApiConfig {
 	public NaverDao naverDao() {
 		return new NaverDao();
 	}
+	
+
+	
+	//service
 	
 	@Bean
 	public KaKaoLoginService kaKaoLoginService() {

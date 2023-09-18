@@ -61,46 +61,46 @@ public class UserJoinDAO {
 		return false;
 	}
 
-	public int verifyUserID(UserDTO userDTO) {
-		/*
-		 * try { Class.forName(driver); Connection con =
-		 * DriverManager.getConnection(url, user, password);
-		 * 
-		 * StringBuilder sql = new StringBuilder();
-		 * sql.append("SELECT COUNT(userID) userID FROM tbl_user2");
-		 * sql.append("	WHERE userID = ?");
-		 * 
-		 * PreparedStatement pst = con.prepareStatement(sql.toString());
-		 * pst.setString(1, userDTO.getUserID());
-		 * 
-		 * ResultSet rs = pst.executeQuery();
-		 * 
-		 * while (rs.next()) { if (rs.getInt("userID") > 0) { return 1; } } } catch
-		 * (Exception e) { e.printStackTrace(); }
-		 */
-		return session.selectOne(namespace + "selectUserCount", userDTO.getUserID());
-	}
+//	public int verifyUserID(UserDTO userDTO) {
+//		/*
+//		 * try { Class.forName(driver); Connection con =
+//		 * DriverManager.getConnection(url, user, password);
+//		 * 
+//		 * StringBuilder sql = new StringBuilder();
+//		 * sql.append("SELECT COUNT(userID) userID FROM tbl_user2");
+//		 * sql.append("	WHERE userID = ?");
+//		 * 
+//		 * PreparedStatement pst = con.prepareStatement(sql.toString());
+//		 * pst.setString(1, userDTO.getUserID());
+//		 * 
+//		 * ResultSet rs = pst.executeQuery();
+//		 * 
+//		 * while (rs.next()) { if (rs.getInt("userID") > 0) { return 1; } } } catch
+//		 * (Exception e) { e.printStackTrace(); }
+//		 */
+//		return session.selectOne(namespace + "selectUserCount", userDTO.getUserID());
+//	}
 
-	public int verifyUserEmail(UserDTO userDTO) {
-		return session.selectOne(namespace + "selectUserEmailCount", userDTO.getEmail());
-		/*
-		 * try { Class.forName(driver); Connection con =
-		 * DriverManager.getConnection(url, user, password);
-		 * 
-		 * StringBuilder sql = new StringBuilder();
-		 * sql.append("SELECT COUNT(email) email FROM tbl_user2");
-		 * sql.append("	WHERE email = ?");
-		 * 
-		 * PreparedStatement pst = con.prepareStatement(sql.toString());
-		 * pst.setString(1, userDTO.getEmail());
-		 * 
-		 * ResultSet rs = pst.executeQuery();
-		 * 
-		 * while (rs.next()) { if (rs.getInt("email") > 0) { return 1; } } } catch
-		 * (Exception e) { e.printStackTrace(); }
-		 */
-
-	}
+//	public int verifyUserEmail(UserDTO userDTO) {
+//		return session.selectOne(namespace + "selectUserEmailCount", userDTO.getEmail());
+//		/*
+//		 * try { Class.forName(driver); Connection con =
+//		 * DriverManager.getConnection(url, user, password);
+//		 * 
+//		 * StringBuilder sql = new StringBuilder();
+//		 * sql.append("SELECT COUNT(email) email FROM tbl_user2");
+//		 * sql.append("	WHERE email = ?");
+//		 * 
+//		 * PreparedStatement pst = con.prepareStatement(sql.toString());
+//		 * pst.setString(1, userDTO.getEmail());
+//		 * 
+//		 * ResultSet rs = pst.executeQuery();
+//		 * 
+//		 * while (rs.next()) { if (rs.getInt("email") > 0) { return 1; } } } catch
+//		 * (Exception e) { e.printStackTrace(); }
+//		 */
+//
+//	}
 
 	public int verifyUserPhoneNumber(UserDTO userDTO) {
 		try {

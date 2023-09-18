@@ -2,12 +2,12 @@ package service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import dao.ChangePwDao;
+import dao.UserDao;
 
 public class ChangePwService {
 	
 	@Autowired
-	ChangePwDao dao;
+	UserDao dao;
 	
 	public void pwChangeService(String npw, String id) {
 		dao.pwChange(npw, id);

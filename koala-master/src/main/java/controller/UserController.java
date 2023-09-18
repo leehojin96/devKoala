@@ -21,8 +21,8 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-	@Autowired
-	MailSender mailSender;
+//	@Autowired
+//	MailSender mailSender;
     
     @RequestMapping( value = "/join" , method = RequestMethod.GET )
     public String join() throws Exception{

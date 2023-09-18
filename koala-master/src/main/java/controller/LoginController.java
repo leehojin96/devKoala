@@ -19,10 +19,14 @@ import service.LoginService;
 
 @Controller
 public class LoginController {
+
+	@Autowired
+	private LoginService service;
 	
 	@Autowired
-	UserDao dao;
-	
+	private UserDao userDao;
+
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -40,7 +44,6 @@ public class LoginController {
 		
 		
 	
-			LoginService service = new LoginService();
 			int result = service.loginUser(id, pw);
 			
 			if(result == 1 ){
@@ -48,7 +51,7 @@ public class LoginController {
 				session.setAttribute("userID", id);
 				session.setAttribute("logintype", login_type);
 				
-				dao.loginLog(id);
+				userDao.loginLog(id);
 				
 				if(rememberId) {
 					//쿠키생성, 저장

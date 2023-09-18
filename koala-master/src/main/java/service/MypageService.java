@@ -2,13 +2,13 @@ package service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import dao.MyPageDao;
+import dao.UserDao;
 import dto.UserMypageDto;
 
 public class MypageService {
 
 	@Autowired
-	MyPageDao dao;
+	UserDao dao;
 
 	public UserMypageDto MypageInfo(String userId) {
 		

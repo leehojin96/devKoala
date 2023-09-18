@@ -9,11 +9,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import dao.ChangePwDao;
 import dao.FindDao;
+import dao.KoalaDao;
 import dao.MyPageDao;
 import dao.UserDao;
-import dao.UserJoinDAO;
 import service.ChangePwService;
 import service.FindService;
+import service.KoalaService;
 import service.LoginService;
 import service.MypageService;
 import service.UserService;
@@ -23,7 +24,7 @@ import service.UserService;
 public class UserConfig {
 
 	@Bean(destroyMethod = "close")
-	public DataSource dataSource() {
+	public DataSource ds() {
 		DataSource ds = new DataSource();
 		ds.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 		ds.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
@@ -40,7 +41,7 @@ public class UserConfig {
 	@Bean
 	public PlatformTransactionManager transactionManager() {
 		DataSourceTransactionManager tm = new DataSourceTransactionManager();
-		tm.setDataSource(dataSource());
+		tm.setDataSource(ds());
 		return tm;
 	}
 
@@ -67,12 +68,15 @@ public class UserConfig {
 		return new MyPageDao();
 	}
 	
+//	@Bean
+//	public UserJoinDAO userJoinDAO() {
+//		return new UserJoinDAO();
+//	}
+	
 	@Bean
-	public UserJoinDAO userJoinDAO() {
-		return new UserJoinDAO();
+	public KoalaDao koalaDao() {
+		return new KoalaDao();
 	}
-	
-	
 	
 	//Service
 	
@@ -99,6 +103,11 @@ public class UserConfig {
 	@Bean
 	public ChangePwService changePwService() {
 		return new ChangePwService();
+	}
+	
+	@Bean
+	public KoalaService koalaService() {
+		return new KoalaService();
 	}
 	
 //	public static void main(String[] args) {

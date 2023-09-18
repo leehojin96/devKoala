@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,13 +9,11 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import dto.UserDTO;
 import dto.UserLogDto;
 import dto.UserMypageDto;
 
-@Component
 public class UserDao {
 
 	@Autowired
@@ -112,7 +109,7 @@ public class UserDao {
 		StringBuilder sql = new StringBuilder();
 		Connection con = null;
 		PreparedStatement pst = null;
-		ResultSet rs = null;
+//		ResultSet rs = null;
 
 		try {
 			con = ds.getConnection(); // DB 연결 시도
@@ -323,5 +320,223 @@ public class UserDao {
 		}
 	}
 	
+	//아이디 찾기
+	 public String idFind(String name, String date, String email, String phone)  {
+		 String sql="select replace(userID,substr(userID,5,20),'****') from tbl_user2 where userName=? and birth=? and email=? and phoneNumber=?";
+		 Connection con = null;
+		 PreparedStatement pst = null;
+		 ResultSet rs = null;
+		 
+		 try {
+			con=ds.getConnection();
+			pst = con.prepareStatement(sql);
+			pst.setString(1, name);
+			pst.setString(2, date);
+			pst.setString(3, email);
+			pst.setString(4, phone);
+			rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				String userid = rs.getString(1);
+				return userid;
+				
+				
+			}else {
+				return null;
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pst.close();
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		 
+		 
+		return null;
+		 
+	 }
+	 
+	 //비밀번호 찾기
+	 public String pwFind(String id, String name, String date, String email, String phone) {
+		 String sql="select userPassword from tbl_user2 where userID=? and userName=? and birth=? and email=? and phoneNumber=?";
+		 Connection con = null;
+		 PreparedStatement pst = null;
+		 ResultSet rs = null;
+		 
+		 try {
+			con=ds.getConnection();
+			pst = con.prepareStatement(sql);
+			pst.setString(1, id);
+			pst.setString(2, name);
+			pst.setString(3, date);
+			pst.setString(4, email);
+			pst.setString(5, phone);
+			rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				String userpw = rs.getString(1);
+				return userpw;
+			}else {
+				return null;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+		 
+		return null;
+		 
+	 }
+	 
+	 //아래로는 정리해야할 메소드들
+	 
+		public int verifyUserPhoneNumber(UserDTO userDTO) {
+			String sql = "SELECT COUNT(phoneNumber) phoneNumber FROM tbl_user2 WHERE phoneNumber = ?";
+			Connection con = null;
+			PreparedStatement pst = null;
+			ResultSet rs = null;
+			try {
+				
+				con = ds.getConnection();
+				pst = con.prepareStatement(sql);
+				pst.setString(1, userDTO.getPhoneNumber());
+				
+				rs = pst.executeQuery();
+				
+				if(rs.next()) {
+					if (rs.getInt("phoneNumber") > 0) {
+						return 1;
+					}
+				}
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			return 0;
+		}
+
+		public String verifyUserID(String userID) {
+			String sql = "SELECT COUNT(userID) count FROM tbl_user2 WHERE userID = ?";
+			Connection con = null;
+			PreparedStatement pst = null;
+			ResultSet rs = null;
+			try {
+				
+				con = ds.getConnection();
+				pst = con.prepareStatement(sql);
+				pst.setString(1, userID);
+				rs = pst.executeQuery();
+				
+				if(rs.next()) {
+					System.out.println(rs.getString("count"));
+					return rs.getString("count");
+				}
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			return "";
+		}
+
+		public String verifyUserPassword(UserDTO userDTO) {
+			String sql = "SELECT COUNT(userID) count FROM tbl_user2 WHERE userID = ? AND userPassword = ?";
+			Connection con = null;
+			PreparedStatement pst = null;
+			ResultSet rs = null;
+			try {
+				
+				con = ds.getConnection();
+				pst = con.prepareStatement(sql);
+				
+
+				pst.setString(1, userDTO.getUserID());
+				pst.setString(2, userDTO.getUserPassword());
+
+				rs = pst.executeQuery();
+				
+				while (rs.next()) {
+					System.out.println(rs.getString("count"));
+					return rs.getString("count");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			return "";
+		}
+	 
+		 public int phonecheck(String newphone) {
+			 String sql="select * from tbl_user2 where phoneNumber=?";
+			 Connection con = null;
+			 PreparedStatement pst = null;
+			 ResultSet rs = null;
+			 
+			 try {
+				con=ds.getConnection();
+				pst=con.prepareStatement(sql);
+				pst.setString(1, newphone);
+				rs=pst.executeQuery();
+				
+				if(rs.next()) {
+					return 1;
+				} else {
+					return 0;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 
+			 
+			 return 0;
+			 
+		 }
+		 
+		 
+		 public UserDTO listUser(String userID) {
+				System.out.println("DAO-서비스에서 listUser 호출해서 도착");
+				UserDTO user1 = null;
+				String sql = " SELECT userID, userName, email, phoneNumber FROM tbl_user2 WHERE userID = ? ";
+				Connection con = null;
+				PreparedStatement pst = null;
+				ResultSet rs = null;
+				
+				try {
+					con = ds.getConnection();
+					pst = con.prepareStatement(sql);
+					pst.setString(1, userID);
+
+					rs = pst.executeQuery();
+
+					if (rs.next()) {
+
+						// 객체생성한 후 setter
+						user1 = new UserDTO();
+						user1.setUserID(rs.getString("userID"));
+						user1.setUserName(rs.getString("userName"));
+						user1.setEmail(rs.getString("email"));
+						user1.setPhoneNumber(rs.getString("phoneNumber"));
+						// System.out.println("userName");
+					}
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return user1;
+			}
 	
 }

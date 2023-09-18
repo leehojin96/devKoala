@@ -14,10 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.MyPageDao;
-import dao.UserDao;
 import dto.UserLogDto;
 import dto.UserMypageDto;
 import service.LoginService;
@@ -27,7 +25,10 @@ import service.MypageService;
 public class MyPageController {
 
 	@Autowired
-	MyPageDao mdao;
+	private MyPageDao mdao;
+	
+	@Autowired
+	private LoginService loginService;
 	
 	
 	@RequestMapping(value = "/mypageenter", method = RequestMethod.GET)
@@ -60,8 +61,7 @@ public class MyPageController {
 	public String mypage2( String id, String pw, HttpServletResponse response) throws IOException {
 		response.setContentType("text/html;charset=utf-8");
 		
-		LoginService service = new LoginService();
-		int result = service.loginUser(id, pw);
+		int result = loginService.loginUser(id, pw);
 		
 		if(result==1) {
 			return "redirect:mypagee";
