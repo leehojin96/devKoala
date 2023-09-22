@@ -2,6 +2,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 	language="java"%>
+	<%@ include file ="../header.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -34,7 +35,7 @@
 	top: 50%;
 	left: 50px;
 }
-input {
+form input {
     margin-top: 7px;
     padding-left: 10px;
 	display: block;
@@ -47,7 +48,7 @@ input {
 	border: 1.5px solid rgb(198, 195, 195);
 	border-radius: 3px;
 }
-input:focus {
+form input:focus {
 	border: 2px solid rgb(154, 123, 13);
 	outline: none;
 }
@@ -109,7 +110,7 @@ button, #mailCheckNumConfirm{
     margin-right: 50%;
     margin-top: 10px;
 }
-img{
+h4 img{
     padding-right: 330px;
     margin-bottom: 35px;
 }
@@ -149,6 +150,7 @@ img{
 				alert("인증번호가 발송되었습니다.");
 				$("#mailCheckNum").css("display", "block");
 				$("#mailCheckNumConfirm").css("display", "block");
+				$("#email_btn").html("인증번호 재전송");
 
 			},
 			error : function(reason) {
@@ -166,6 +168,12 @@ img{
 			$("#error-email").text('인증이 완료되었습니다');
 			$("#mailCheckNum").css("display", "none");
 			$("#mailCheckNumConfirm").css("display", "none");
+			$("#email_btn").html("인증 완료");
+			$("#email_btn").attr("disabled",true);
+			$("#emailName").attr("readonly",true);
+			$("#emailDomain").attr("readonly",true);
+			$("#emailDomainSelect").attr("disabled",true);
+			
 		}else{
 			alert("인증번호가 일치하지 않습니다");
 			return false;
@@ -225,7 +233,7 @@ img{
 						<label>생년월일</label>
 						<div>
 							<input type="date"  name="birth" id="birth"
-								autocomplete="off">
+								autocomplete="off" min="1945-06-25" max="2023-12-31">
 						</div>
 						<p class="error" id="error-birth"></p>
 					</div>
@@ -243,12 +251,12 @@ img{
 								<option value="daum.net">daum.net</option>
 								<option value="hanmail.net">hanmail.net</option>
 								<option value="nate.com">nate.com</option>
-								<option value="google.com">google.com</option></select> 
-                            <input type="text" id="mailCheckNum" style="display: none" placeholder="인증번호입력" autocomplete="off">
-							<input type="button" id="mailCheckNumConfirm" value="인증번호 확인"
-								style="display: none" onClick="javascript:checkMail()">
+								<option value="gmail.com">gmail.com</option></select> 
 							<button type="button" id="email_btn" class="email_btn"
 								onClick="javascript:sendMail()">인증번호 받기</button>
+                            <input type="text" id="mailCheckNum" style="display: none" placeholder="인증번호입력" autocomplete="off" maxlength="8">
+							<input type="button" id="mailCheckNumConfirm" value="인증번호 확인"
+								style="display: none" onClick="javascript:checkMail()">
 							<input type="hidden" id="confirmYn" name="confirmYn" value="0">
 						</div>
 						<p class="error" id="error-email"></p>
@@ -270,7 +278,7 @@ img{
 						<label>우편번호</label>
 						<div>
 							<input type="text" id="addr1" name="addr1" placeholder="우편번호" 
-								style="display: inline;" readonly="readonly" />
+								style="display: inline;" readonly="readonly" onClick="DaumPostcode();" />
 							<button onClick="DaumPostcode();"
 								style="width: 100px" type="button" id="post_btn">주소 검색</button>
 						</div>
@@ -280,7 +288,7 @@ img{
 					<div class="formTr">
 						<div>
 							<input type="text" id="addr2" name="addr2"
-								readonly="readonly" size="40" maxlength="30" placeholder="주소"  />
+								readonly="readonly" size="40" maxlength="30" placeholder="주소" onClick="DaumPostcode();" />
 						</div>
 					</div>
 

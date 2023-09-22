@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import dao.ApiBooks;
-import dao.KoalaDao;
+import api.ApiBooks;
+import dao.BoardDao;
 import dto.BoarderDTO;
-import service.KoalaService;
+import service.BoardService;
 
 @Controller
 public class KoalaController {

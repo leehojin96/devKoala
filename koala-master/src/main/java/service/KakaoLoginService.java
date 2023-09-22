@@ -2,19 +2,19 @@ package service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import dao.KaKaoDao;
+import api.KakaoLoginApi;
 
-public class KaKaoLoginService {
+public class KakaoLoginService {
 	
 	@Autowired
-	KaKaoDao dao;
+	KakaoLoginApi kakaoLoginApi;
 	
 	public int kakaoCheck(String id) {
-		int result = dao.kakaoidCheck(id);
+		int result = kakaoLoginApi.kakaoidCheck(id);
 		return result;
 	}
 	
 	public void kakaoJoin(String id, String email, String nickname, String gender) {
-		dao.KakaoJoin(id, email, nickname, gender);
+		kakaoLoginApi.KakaoJoin(id, email, nickname, gender);
 	}
 }

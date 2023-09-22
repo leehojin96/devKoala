@@ -1,20 +1,22 @@
 package config;
 
+import java.util.Properties;
+
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import dao.ChangePwDao;
-import dao.FindDao;
-import dao.KoalaDao;
-import dao.MyPageDao;
+import dao.BoardDao;
 import dao.UserDao;
+import service.BoardService;
 import service.ChangePwService;
 import service.FindService;
-import service.KoalaService;
+import service.JoinService;
 import service.LoginService;
 import service.MypageService;
 import service.UserService;
@@ -44,6 +46,23 @@ public class UserConfig {
 		tm.setDataSource(ds());
 		return tm;
 	}
+	
+	@Bean
+	public JavaMailSender javaMailSender() {
+		JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
+		javaMailSender.setHost("smtp.naver.com");
+		javaMailSender.setPort(587);
+		javaMailSender.setUsername("st2035@naver.com");
+		javaMailSender.setPassword("Leeought21!@");
+		
+		Properties props = javaMailSender.getJavaMailProperties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.timeout", 5000);
+		props.put("mail.smtp.starttls.enable","ture");
+		
+		
+		return javaMailSender;
+	}
 
 	
 	//Dao
@@ -54,29 +73,31 @@ public class UserConfig {
 	}
 	
 	@Bean
-	public ChangePwDao changePwDao() {
-		return new ChangePwDao(); 
+	public BoardDao koalaDao() {
+		return new BoardDao();
 	}
 	
-	@Bean
-	public FindDao findDao() {
-		return new FindDao();
-	}
+//	@Bean
+//	public ChangePwDao changePwDao() {
+//		return new ChangePwDao(); 
+//	}
+//	
+//	@Bean
+//	public FindDao findDao() {
+//		return new FindDao();
+//	}
 	
-	@Bean
-	public MyPageDao myPageDao() {
-		return new MyPageDao();
-	}
+//	@Bean
+//	public MyPageDao myPageDao() {
+//		return new MyPageDao();
+//	}
 	
 //	@Bean
 //	public UserJoinDAO userJoinDAO() {
 //		return new UserJoinDAO();
 //	}
 	
-	@Bean
-	public KoalaDao koalaDao() {
-		return new KoalaDao();
-	}
+	
 	
 	//Service
 	
@@ -106,8 +127,13 @@ public class UserConfig {
 	}
 	
 	@Bean
-	public KoalaService koalaService() {
-		return new KoalaService();
+	public BoardService koalaService() {
+		return new BoardService();
+	}
+	
+	@Bean
+	public JoinService joinService() {
+		return new JoinService();
 	}
 	
 //	public static void main(String[] args) {

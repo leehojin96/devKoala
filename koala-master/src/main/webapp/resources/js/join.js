@@ -163,12 +163,12 @@ function CheckUserPassword() {
 	}
 	
 	if (userPassword.value.length < 8 || userPassword.value.length > 20) {
-		error.textContent = '비밀번호는 8자 이상 20자 이하로 입력해주세요.';
+		error.textContent = '비밀번호는 영문, 숫자, 특수문자 포함하여 8자 이상 20자 입력해주세요.';
 		return false;
 	}
 	
-	if (new RegExp(/(?=.*[0-9]{2}.*)(?=.*[a-zA-Z]{2}.*)(?=.*[~!@@#$%^&*|₩₩₩'₩";:₩]{2}.*)/).test(userPassword.value) == false) {
-		error.textContent = '비밀번호는 영문, 숫자, 특수문자 2자 이상 포함하여 입력해주세요.';
+	if (new RegExp(/(?=.*[0-9]{1}.*)(?=.*[a-zA-Z]{1}.*)(?=.*[~!@@#$%^&*|₩₩₩'₩";:₩]{1}.*)/).test(userPassword.value) == false) {
+		error.textContent = '비밀번호는 영문, 숫자, 특수문자 포함하여 8자 이상 20자 입력해주세요.';
 		return false;
 	}
 	

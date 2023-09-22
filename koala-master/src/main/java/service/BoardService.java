@@ -4,37 +4,37 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import dao.KoalaDao;
+import dao.BoardDao;
 import dto.BoarderDTO;
 import dto.CommentsDTO;
 
-public class KoalaService {
+public class BoardService {
 
 	@Autowired
-	KoalaDao dao;
+	BoardDao boardDao;
 	String w_number;
 	
 	public ArrayList<BoarderDTO> selectBoard(){
-		return dao.selectBoard();
+		return boardDao.selectBoard();
 		
 	}
 
 	public String[] showDetail(String w_number) {
-		return dao.showDetail(w_number);
+		return boardDao.showDetail(w_number);
 		
 	}
 	
 	
 	public void insertContent(BoarderDTO dto) {
-		dao.insertContent(dto);
+		boardDao.insertContent(dto);
 	}
 	
 	public void add_comments(CommentsDTO dto) {
-		dao.add_comments(dto);
+		boardDao.add_comments(dto);
 	}
 	
 	public ArrayList<CommentsDTO> show_comments(String w_number) {
-		return dao.show_comments(w_number);
+		return boardDao.show_comments(w_number);
 	}
 	
 }

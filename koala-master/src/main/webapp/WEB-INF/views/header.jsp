@@ -233,7 +233,7 @@ header .menu .menu_wrap .mainmenu a {
 							class="home_icon">home</a> </span> <span>|</span>
 					<c:choose>
 						<c:when test="${userID == null }">
-							<span><a href="/koala/login">로그인</a></span>
+							<span><a href="/koala/user/login">로그인</a></span>
 							<span>|</span>
 							<span><a href="/koala/user/join">회원가입 </a></span>
 						</c:when>
@@ -242,7 +242,7 @@ header .menu .menu_wrap .mainmenu a {
 						<c:when test="${userID != null && logintype == '0' }">
 						<span><a href="/koala/mypageenter">마이페이지</a></span>
 						<span>|</span>
-							<span><a href="/koala/logout">로그아웃</a></span>
+							<span><a href="/koala/user/logout">로그아웃</a></span>
 							<span>|</span> <span><a href="javascript:chatPopupOpen();">고객센터</a></span>
 						</c:when>
 
@@ -269,7 +269,7 @@ header .menu .menu_wrap .mainmenu a {
 
 					<div class="menu">
 						<ul class="menu_wrap">
-							<li class="mainmenu"><a href="#">도서</a>
+							<li class="mainmenu"><a href="/koala/books">도서</a>
 								<ul class="submenu">
 									<li><a href="/koala/Bestseller">베스트셀러</a></li>
 									<li><a href="/koala/ItemNewAll">신간 도서</a></li>

@@ -27,17 +27,17 @@ public class LoginController {
 	private UserDao userDao;
 
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "user/login", method = RequestMethod.GET)
 	public String login(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("userID") != null) {
 			return "redirect:index";
 		}
-		return "login";
+		return "/user/login";
 	}
 	
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "user/login", method = RequestMethod.POST)
 	public String login2(String id, String pw, String login_type, boolean rememberId, HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
 		
@@ -63,7 +63,7 @@ public class LoginController {
 					cookie.setMaxAge(0); // 쿠키 삭제
 					response.addCookie(cookie);
 				}
-				return "redirect:index";		// redirect 가 아닌  return "index"  로 보내게 되면 화면은 index로 가지만 주소창엔 login으로 남아있음
+				return "redirect: ../index";		// redirect 가 아닌  return "index"  로 보내게 되면 화면은 index로 가지만 주소창엔 login으로 남아있음
 			} else if (result == 0){
 				PrintWriter script = response.getWriter();
 				script.println("<script>alert('비밀번호가 틀립니다.'); history.back(); </script>");
@@ -80,7 +80,7 @@ public class LoginController {
 		return null;
 	}
 	
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	@RequestMapping(value = "user/logout", method = RequestMethod.GET)
 	public String logout(HttpServletResponse response, HttpServletRequest request) throws IOException {
 		response.setContentType("text/html;charset=utf-8");
 		

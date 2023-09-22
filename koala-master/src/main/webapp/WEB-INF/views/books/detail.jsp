@@ -11,40 +11,48 @@
 <script>
 	$(document).ready(
 			function() {
+				$.ajax({
+					type:"GET",
+					url:"/koala/books/detail/model",
+					data: {isbn: isbn},
+					success : function(data){
+						console.log(data);
+						//도서 고유 번호
+						//let isbn13 = '${param.isbn13}';
+						//console.log('${title}');
 
-				//도서 고유 번호
-				//let isbn13 = '${param.isbn13}';
-				//console.log('${title}');
+						//판매가 콤마 작업
+						let priceSales = data.priceSales;
+						let priceSalesCommas = priceSales.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+						$("#priceSales").html(priceSalesCommas + " 원");
 
-				//판매가 콤마 작업
-				let priceSales = ${priceSales};
-				let priceSalesCommas = priceSales.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-				$("#priceSales").html(priceSalesCommas + " 원");
+						//정가 콤마 작업
+						let priceStandard = ${detail.priceStandard};
+						let priceStandardCommas = priceStandard.toString().replace(	/\B(?=(\d{3})+(?!\d))/g, ",");
+						$("#priceStandard").html(priceStandardCommas + " 원");
 
-				//정가 콤마 작업
-				let priceStandard = ${priceStandard};
-				let priceStandardCommas = priceStandard.toString().replace(	/\B(?=(\d{3})+(?!\d))/g, ",");
-				$("#priceStandard").html(priceStandardCommas + " 원");
+						// 총 금액 권수에 따라 실시간 금액 변경
+						$("#booksVolume").on("propertychange change keyup paste input",function() {
+									//총 금액 콤마 작업 
+									let totalPrice = priceSales * this.value;
+									let totalPriceCommas = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+									$("#totalPriceH2").html(totalPriceCommas + " 원");
+								});
+						$("#totalPriceH2").html(priceSalesCommas + " 원");
 
-				// 총 금액 권수에 따라 실시간 금액 변경
-				$("#booksVolume").on("propertychange change keyup paste input",function() {
-							//총 금액 콤마 작업 
-							let totalPrice = priceSales * this.value;
-							let totalPriceCommas = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-							$("#totalPriceH2").html(totalPriceCommas + " 원");
+						function toHtml(data) {
+							let str = "";
+						}
+
+						$(".btn_right").click(function() {
+							window.open("${detail.link}");
 						});
-				$("#totalPriceH2").html(priceSalesCommas + " 원");
 
-				function toHtml(data) {
-					let str = "";
-				}
-
-				$(".btn_right").click(function() {
-					window.open("${link}");
+						let itemId = "${detail.itemId}";
+						console.log(itemId);
+					}
 				});
-
-				let itemId = "${itemId}";
-				console.log(itemId);
+			
 
 			});
 </script>
@@ -265,7 +273,7 @@ width: 85%;
 	<section>
 		<div id="detail_top">
 			<div id="img_wrap">
-				<img id="img_cover" src="${cover}">
+				<img id="img_cover" src="${detail.cover}">
 				<div id="prev_box">
 					<a
 						href="https://www.aladin.co.kr/shop/book/wletslookViewer.aspx?ItemId=${itemId}"

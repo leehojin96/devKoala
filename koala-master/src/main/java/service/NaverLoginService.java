@@ -2,19 +2,19 @@ package service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import dao.NaverDao;
+import api.NaverLoginApi;
 
 public class NaverLoginService {
 	
 	@Autowired
-	NaverDao dao;
+	NaverLoginApi naverLoginApi;
 	
 
 	public int naverCheck(String id) {
-		int result = dao.naveridCheck(id);
+		int result = naverLoginApi.naveridCheck(id);
 		return result;
 	}
 	public void naverJoin(String id, String name, String email, String gender, String birthday, String birthyear, String mobile) {
-		dao.NaverJoin(id, name, email, gender, birthday, birthyear, mobile);
+		naverLoginApi.NaverJoin(id, name, email, gender, birthday, birthyear, mobile);
 	}
 }

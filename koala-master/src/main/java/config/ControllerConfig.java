@@ -8,13 +8,12 @@ import controller.BoarderController;
 import controller.BooksViewController;
 import controller.ChangePwController;
 import controller.FindController;
+import controller.JoinController;
 import controller.KoalaController;
 import controller.LoginController;
 import controller.MyPageController;
 import controller.PopUpLoginController;
 import controller.UserController;
-import service.KaKaoLoginService;
-import service.NaverLoginService;
 
 @Configuration
 public class ControllerConfig {
@@ -34,6 +33,11 @@ public class ControllerConfig {
 	public UserController userController() {
 		return new UserController();
 	}
+	
+	@Bean
+	public JoinController joinController() {
+		return new JoinController();
+	}
 
 	@Bean
 	public BoarderController boarderController() {
@@ -45,16 +49,16 @@ public class ControllerConfig {
 		return new ChangePwController();
 	}
 	
-	@Bean
-	public KaKaoLoginService kaKaoLoginService() {
-		return new KaKaoLoginService();
-	}
-	
-	@Bean
-	public NaverLoginService naverLoginService() {
-		return new NaverLoginService();
-	}
-	
+//	@Bean
+//	public KakaoLoginController kakaoLoginController() {
+//		return new KakaoLoginController();
+//	}
+//	
+//	@Bean
+//	public NaverLoginController naverLoginService() {
+//		return new NaverLoginController();
+//	}
+//	
 	@Bean
 	public FindController findController() {
 		return new FindController();

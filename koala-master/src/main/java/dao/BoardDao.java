@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.concurrent.locks.Condition;
 
 import javax.sql.DataSource;
 
@@ -16,7 +15,7 @@ import dto.BoarderDTO;
 import dto.CommentsDTO;
 
 @Component
-public class KoalaDao {
+public class BoardDao {
 	
 	@Autowired
 	DataSource ds;
@@ -29,7 +28,7 @@ public class KoalaDao {
 		Connection conn =null;
 		PreparedStatement pstmt = null;
         ResultSet rs = null;
-        String sql = " select w_number, userID, title, passward, content, ";
+        String sql = " select w_number, userID, title, password, content, ";
         		sql+=" to_char(writeday,'yyyy-mm-dd') 날짜 ";
         		sql+=" from board order by w_number desc ";
         try {
@@ -42,7 +41,7 @@ public class KoalaDao {
 	        	dto.setW_number(rs.getString(1));
 	        	dto.setUserID(rs.getString(2));
 	        	dto.setTitle(rs.getString(3));
-	        	dto.setPassward(rs.getString(4));
+	        	dto.setPassword(rs.getString(4));
 	        	dto.setContent(rs.getString(5));
 	        	dto.setWriteday(rs.getString(6));
 	        	list.add(dto);
@@ -72,7 +71,7 @@ public class KoalaDao {
 		Connection conn =null;
 		PreparedStatement pstmt = null;
         ResultSet rs = null;
-        String sql = " select w_number, userID, title, passward, content, ";
+        String sql = " select w_number, userID, title, password, content, ";
         		sql+=" to_char(writeday,'yyyy-mm-dd') 날짜 ";
         		sql+=" from board where w_number = ? ";
         		
@@ -120,7 +119,7 @@ public class KoalaDao {
 	public void insertContent(BoarderDTO dto) {
 		System.out.println(" insert start");
 		System.out.println(dto.getTitle());
-		System.out.println(dto.getPassward());
+		System.out.println(dto.getPassword());
 		System.out.println(dto.getContent());
 		Connection conn =null;
 		PreparedStatement pstmt = null;
@@ -134,7 +133,7 @@ public class KoalaDao {
 	        //System.out.println(dto.getTitle());
 			pstmt.setString(1, dto.getUserID());
 			pstmt.setString(2, dto.getTitle());
-			pstmt.setString(3, dto.getPassward());
+			pstmt.setString(3, dto.getPassword());
 			pstmt.setString(4, dto.getContent());
 			pstmt.executeUpdate();
 			
@@ -254,13 +253,13 @@ public class KoalaDao {
 	  }
 	
 	
-	
-	public static void main(String[] args) {
-		KoalaDao dao = new KoalaDao();
-		//dao.create_comments_tbl();
-		
-	}
-	
+//	
+//	public static void main(String[] args) {
+//		BoardDao dao = new BoardDao();
+//		//dao.create_comments_tbl();
+//		
+//	}
+//	
 	
 
 }

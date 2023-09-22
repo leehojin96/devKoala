@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,22 +20,7 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-//	@Autowired
-//	MailSender mailSender;
-    
-    @RequestMapping( value = "/join" , method = RequestMethod.GET )
-    public String join() throws Exception{
-        return "user/join";
-    }
-    
-    @ResponseBody
-    @RequestMapping( value = "/create", method = RequestMethod.POST )
-    public Map<String, Object> joinSubmit(@RequestBody UserDTO userDTO) {
-    	//System.out.println("!!!");
-    	Map<String, Object> map = userService.join(userDTO); 
-    	return map;
-    }
-    
+
     @ResponseBody
     @RequestMapping( value = "/verify", method = RequestMethod.POST )
     public Map<String, Object> verify(@RequestBody UserDTO userDTO) {
@@ -77,26 +61,5 @@ public class UserController {
     	return userDTO;
     }
     
-//    @ResponseBody
-//	@RequestMapping(value = "/sendMail", method = RequestMethod.GET)
-//	public String sendMail(String userEmail) {		
-//		Random random = new Random();
-//		int checkNum = random.nextInt(888888) + 111111;
-//
-//		// 이메일 보내기 
-//        String setFrom = "silverlight153@naver.com";
-//        String toMail = userEmail;
-//        String title = "코알라북 회원가입 인증 이메일 입니다.";
-//        String content = "KOALA BOOK 회원가입을 축하합니다!!" +"\n"+"\n"+"인증 번호는 " +"\s"+ checkNum +"\s"+"\s"+ "입니다." +  "\n"+"\n"+"회원가입 인증을 완료해주세요!";
-//        
-//        	SimpleMailMessage message= new SimpleMailMessage();
-//            message.setFrom(setFrom);
-//            message.setTo(toMail);
-//            message.setSubject(title);
-//            message.setText(content);
-//            mailSender.send(message);
-//        
-//        return Integer.toString(checkNum);
-// 
-//	}
+    
 }

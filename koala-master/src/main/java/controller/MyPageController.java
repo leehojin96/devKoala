@@ -15,7 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import dao.MyPageDao;
+import dao.UserDao;
 import dto.UserLogDto;
 import dto.UserMypageDto;
 import service.LoginService;
@@ -23,12 +23,15 @@ import service.MypageService;
 
 @Controller
 public class MyPageController {
-
-	@Autowired
-	private MyPageDao mdao;
 	
 	@Autowired
+	private UserDao userDao;
+
+	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	private MypageService mypageService;
 	
 	
 	@RequestMapping(value = "/mypageenter", method = RequestMethod.GET)
@@ -58,12 +61,13 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value = "/mypageenter", method = RequestMethod.POST)
-	public String mypage2( String id, String pw, HttpServletResponse response) throws IOException {
+	public String mypage2( String id, String pw, HttpServletResponse response,HttpServletRequest request) throws IOException {
 		response.setContentType("text/html;charset=utf-8");
 		
 		int result = loginService.loginUser(id, pw);
 		
 		if(result==1) {
+			request.getSession().setAttribute("id", id);
 			return "redirect:mypagee";
 		}else if (result == 0){
 			PrintWriter script = response.getWriter();
@@ -93,8 +97,7 @@ public class MyPageController {
 		
 		if(userID != null && logintype.equals("0") ) {	// 로그인함
 			
-			MypageService service = new MypageService();
-			UserMypageDto user = service.MypageInfo(userID);
+			UserMypageDto user = mypageService.MypageInfo(userID);
 			
 			
 			
@@ -174,7 +177,7 @@ public class MyPageController {
 	@RequestMapping(value = "/logpopup", method = RequestMethod.GET)
 	public ArrayList<UserLogDto> logpopup(String id, HttpServletRequest request) {
 		
-		ArrayList<UserLogDto> list = mdao.LogView(id);
+		ArrayList<UserLogDto> list = userDao.LogView(id);
 		request.setAttribute("list", list);
 		
 		

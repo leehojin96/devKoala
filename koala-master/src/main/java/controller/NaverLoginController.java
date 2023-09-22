@@ -9,26 +9,26 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import dao.NaverDao;
 import service.NaverLoginService;
 
 @Controller
 public class NaverLoginController {
+	
+	@Autowired
+	NaverLoginService naverLoginService;
 
 	@RequestMapping(value = "/naverLogin", method = RequestMethod.POST)
 	public String naverLogin(String id, String name, String email, String gender, String birthday, String birthyear, String mobile, String login_type, HttpServletRequest request) throws IOException {
 		
 		System.out.println(id + "/" + name + "/" + email + "/" + gender + "/" + birthday + "/" + birthyear + "/" + mobile + "/" + login_type);
 		
-		NaverLoginService service = new NaverLoginService();
-		int result = service.naverCheck(id);
+		int result = naverLoginService.naverCheck(id);
 		// 가입 후 세션에 id 등록
 		if(result==0) {
-			service.naverJoin(id, name, email, gender, birthday, birthyear, mobile);
+			naverLoginService.naverJoin(id, name, email, gender, birthday, birthyear, mobile);
 			HttpSession session = request.getSession();
 			session.setAttribute("userID", id);
 			session.setAttribute("logintype", login_type);

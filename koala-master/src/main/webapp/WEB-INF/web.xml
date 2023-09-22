@@ -39,9 +39,8 @@
 				config.UserConfig
 				config.MvcConfig
 				config.ControllerConfig
-				config.AladinApiContorllerConfig
+				config.AladinApiConfig
 				config.BoardConfig
-				config.LoginApiConfig
 			</param-value>
 		</init-param>
 

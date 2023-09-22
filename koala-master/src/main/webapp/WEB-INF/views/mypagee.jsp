@@ -142,7 +142,7 @@
 	}
 	
 	function log_popup(){
-		window.open("http://localhost:8090/<c:url value='/logpopup?id=${id}' />","Koala Book Log","width=850, height=650, toolbar=no, menubar=no, scrollbar=yes");
+		window.open("http://localhost:8080/<c:url value='/logpopup?id=${id}' />","Koala Book Log","width=850, height=650, toolbar=no, menubar=no, scrollbar=yes");
 	}
 
 	function unregister(){

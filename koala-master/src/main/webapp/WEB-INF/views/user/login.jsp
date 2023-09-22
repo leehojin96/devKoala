@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file ="header.jsp" %>
+    <%@ include file ="../header.jsp" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
 <!DOCTYPE html>
@@ -258,7 +258,7 @@ main .password_img{
                         <div class="login_inner">
                         
                         
-                        <form method="post" action="<c:url value='/login' />" name="frm" onsubmit="return check()">
+                        <form method="post" action="<c:url value='login' />" name="frm" onsubmit="return check()">
                             <div class="login">
 	                                <input type="text" placeholder="Enter ID" name="id" value="${cookie.id.value}" id="id">
 	                                
@@ -286,7 +286,7 @@ main .password_img{
                                 <a href="#"><img class="kakao_btn" id="btn-kakao-login" src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt="" onclick="kakaoLogin()"></a>
                              </div>
                              
-                             <a href="#"class="join_a">회원가입</a>
+                             <a href="<c:url value='/user/join' />"class="join_a">회원가입</a>
                         </div>
                     </div>
                 </main>
@@ -304,7 +304,7 @@ main .password_img{
 		    	
 		 
                 
-	<%@ include file ="footer.jsp" %>
+	<%@ include file ="../footer.jsp" %>
 	<script>
 	  
 	 

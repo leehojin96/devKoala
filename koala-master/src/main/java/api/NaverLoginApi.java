@@ -1,4 +1,4 @@
-package dao;
+package api;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class NaverDao {
+public class NaverLoginApi {
 	 @Autowired
 	  DataSource ds;
 	 

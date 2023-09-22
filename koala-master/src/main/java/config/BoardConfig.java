@@ -3,21 +3,21 @@ package config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import dao.KoalaDao;
-import service.KoalaService;
+import api.KakaoLoginApi;
+import service.BoardService;
 
 @Configuration
 public class BoardConfig {
 
 	
 	@Bean
-	public KoalaDao koalaDao() {
-		return new KoalaDao();
+	public KakaoLoginApi boardDao() {
+		return new KakaoLoginApi();
 	}
 	
 	@Bean
-	public KoalaService koalaService() {
-		return new KoalaService();
+	public BoardService koalaService() {
+		return new BoardService();
 	}
 	
 }

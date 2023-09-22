@@ -12,22 +12,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import dao.KaKaoDao;
-import service.KaKaoLoginService;
+import service.KakaoLoginService;
 
 @Controller
-public class KaKaoLoginController {
+public class KakaoLoginController {
 	
+	@Autowired
+	KakaoLoginService kakaoLoginService;
 	
 	@RequestMapping(value = "/kakaoLogin", method = RequestMethod.POST)
 	public String kakaoLogin(String id, String email, String nickname, String gender, String login_type, HttpServletRequest request) {
 		System.out.println(id +"/"+ email + "/"+ nickname + "/"+ gender  + "/"+ login_type );
 		
-		KaKaoLoginService service = new KaKaoLoginService();
-		int result = service.kakaoCheck(id);
+		int result = kakaoLoginService.kakaoCheck(id);
 		// 가입 후 세션에 id 등록
 		if(result == 0) {
-			service.kakaoJoin(id, email, nickname, gender);
+			kakaoLoginService.kakaoJoin(id, email, nickname, gender);
 			HttpSession session = request.getSession();
 			session.setAttribute("userID", id);
 			session.setAttribute("logintype", login_type);

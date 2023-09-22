@@ -1,4 +1,4 @@
-package dao;
+package api;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,10 +10,9 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import dto.UserMypageDto;
-
 @Component
-public class KaKaoDao {
+public class KakaoLoginApi {
+	
 	 @Autowired
 	  DataSource ds;
 	 
@@ -57,7 +56,6 @@ public class KaKaoDao {
 		 String sql="insert into koala_kakao_tbl values(?,?,?,?)";
 		 Connection con = null;
 		 PreparedStatement pst = null;
-		 ResultSet rs = null;
 		 
 		 try {
 			con=ds.getConnection();

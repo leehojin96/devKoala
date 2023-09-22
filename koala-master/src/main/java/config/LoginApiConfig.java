@@ -3,9 +3,9 @@ package config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import dao.KaKaoDao;
-import dao.NaverDao;
-import service.KaKaoLoginService;
+import api.KakaoLoginApi;
+import api.NaverLoginApi;
+import service.KakaoLoginService;
 import service.NaverLoginService;
 
 @Configuration
@@ -14,13 +14,13 @@ public class LoginApiConfig {
 	//dao 
 	
 	@Bean
-	public KaKaoDao kaKaoDao() {
-		return new KaKaoDao();
+	public KakaoLoginApi kakaoLoginApi() {
+		return new KakaoLoginApi();
 	}
 	
 	@Bean
-	public NaverDao naverDao() {
-		return new NaverDao();
+	public NaverLoginApi naverLoginApi() {
+		return new NaverLoginApi();
 	}
 	
 
@@ -28,8 +28,8 @@ public class LoginApiConfig {
 	//service
 	
 	@Bean
-	public KaKaoLoginService kaKaoLoginService() {
-		return new KaKaoLoginService();
+	public KakaoLoginService kakaoLoginService() {
+		return new KakaoLoginService();
 	}
 	
 	@Bean

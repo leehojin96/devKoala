@@ -5,7 +5,7 @@ public class BoarderDTO {
 	String w_number;
 	String userID;
 	String title;
-	String passward;
+	String password;
 	String content;
 	String writeday ;
 	
@@ -18,12 +18,12 @@ public class BoarderDTO {
 	}
 
 
-	public BoarderDTO(String w_number, String userID, String title, String passward, String content, String writeday) {
+	public BoarderDTO(String w_number, String userID, String title, String password, String content, String writeday) {
 		super();
 		this.w_number = w_number;
 		this.userID = userID;
 		this.title = title;
-		this.passward = passward;
+		this.password = password;
 		this.content = content;
 		this.writeday = writeday;
 	}
@@ -69,13 +69,13 @@ public class BoarderDTO {
 	}
 
 
-	public String getPassward() {
-		return passward;
+	public String getPassword() {
+		return password;
 	}
 
 
-	public void setPassward(String passward) {
-		this.passward = passward;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 
@@ -123,7 +123,7 @@ public class BoarderDTO {
 
 	@Override
 	public String toString() {
-		return "BoarderDTO [w_number=" + w_number + ", userID=" + userID + ", title=" + title + ", passward=" + passward
+		return "BoarderDTO [w_number=" + w_number + ", userID=" + userID + ", title=" + title + ", password=" + password
 				+ ", content=" + content + ", writeday=" + writeday + "]";
 	}
 

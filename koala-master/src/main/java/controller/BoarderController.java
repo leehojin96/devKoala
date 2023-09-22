@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import dao.KoalaDao;
+import dao.BoardDao;
 import dto.BoarderDTO;
 import dto.CommentsDTO;
-import service.KoalaService;
+import service.BoardService;
 
 @Controller
 public class BoarderController {
@@ -23,7 +23,7 @@ public class BoarderController {
 	//게시판 이동
 	@RequestMapping(value = "/board", method = RequestMethod.GET)
 	public String board(Model m) {	
-		KoalaService s = new KoalaService();
+		BoardService s = new BoardService();
 		ArrayList<BoarderDTO> list = s.selectBoard();
 		//System.out.println(list);
 		//System.out.println("abc");
@@ -46,7 +46,7 @@ public class BoarderController {
 		userID = (String)session.getAttribute("userID");
 		
 		
-		KoalaService s = new KoalaService();
+		BoardService s = new BoardService();
 		BoarderDTO dto = new BoarderDTO(w_number,userID,title,passward,content,writeday);
 		s.insertContent(dto);
 		
@@ -71,7 +71,7 @@ public class BoarderController {
 		System.out.println("세션에서 넘어온 아이디"+userID);
 		
 		
-		KoalaService s = new KoalaService();
+		BoardService s = new BoardService();
 		//String str = comments;
 		
 		//댓글 insert
@@ -112,7 +112,7 @@ public class BoarderController {
 		String userID = (String)session.getAttribute("id");
 		
 		String w_number = httpServletRequest.getParameter("w_number");
-		KoalaService s = new KoalaService();
+		BoardService s = new BoardService();
 		String[] list = s.showDetail(w_number);
 		m.addAttribute("list",list);
 		
