@@ -3,7 +3,7 @@ package service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import dao.UserDao;
-import dto.UserDTO;
+import dto.UserDto;
 
 public class UserService {
 	
@@ -20,19 +20,19 @@ public class UserService {
 	} //아이디 중복체크버튼 
 	
 	
-	public Boolean verifyUserPassword(UserDTO userDTO) {
+	public Boolean verifyUserPassword(UserDto userDto) {
 		Boolean result = false;
-		if("1".equals(userDao.verifyUserPassword(userDTO))) {
-			userDao.deleteUser(userDTO);
+		if("1".equals(userDao.verifyUserPassword(userDto))) {
+			userDao.deleteUser(userDto);
 			result = true;
 		}
 		return result;
 				
 	}
 
-	public UserDTO list(String userID) {
+	public UserDto list(String userID) {
 		
-		UserDTO resultUser = new UserDTO();
+		UserDto resultUser = new UserDto();
 	
 		resultUser = userDao.listUser(userID);
 		//다오에서 쿼리실행결과를 받아주는구문 

@@ -14,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import dao.UserDao;
 import service.LoginService;
 
 @Controller
@@ -23,9 +22,6 @@ public class LoginController {
 	@Autowired
 	private LoginService service;
 	
-	@Autowired
-	private UserDao userDao;
-
 
 	@RequestMapping(value = "user/login", method = RequestMethod.GET)
 	public String login(HttpServletRequest request) {
@@ -40,18 +36,15 @@ public class LoginController {
 	@RequestMapping(value = "user/login", method = RequestMethod.POST)
 	public String login2(String id, String pw, String login_type, boolean rememberId, HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
-		
-		
-		
 	
 			int result = service.loginUser(id, pw);
 			
 			if(result == 1 ){
 				HttpSession session = request.getSession();
-				session.setAttribute("userID", id);
-				session.setAttribute("logintype", login_type);
+				session.setAttribute("userId", id);
+				session.setAttribute("loginType", login_type);
 				
-				userDao.loginLog(id);
+//				userDao.loginLog(id);
 				
 				if(rememberId) {
 					//쿠키생성, 저장
@@ -77,7 +70,7 @@ public class LoginController {
 		
 		
 		
-		return null;
+		return "redirect: ../index";
 	}
 	
 	@RequestMapping(value = "user/logout", method = RequestMethod.GET)

@@ -34,6 +34,7 @@ public class UserConfig {
 		ds.setPassword("1234");
 		ds.setInitialSize(2);
 		ds.setMaxActive(10);
+		ds.setMaxIdle(10);
 		ds.setTestWhileIdle(true);
 		ds.setMinEvictableIdleTimeMillis(60000 * 3);
 		ds.setTimeBetweenEvictionRunsMillis(10 * 1000);

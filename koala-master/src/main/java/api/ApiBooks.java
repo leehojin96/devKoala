@@ -185,8 +185,4 @@ public class ApiBooks {
 	}
 
 
-	public static void main(String[] args) {
-		// String result = getItemNewSpecial(1,0);
-		// fromJSONtoItems(result);
-	}
 }

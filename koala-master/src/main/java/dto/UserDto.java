@@ -1,7 +1,8 @@
 package dto;
 
 
-public class UserDTO {
+public class UserDto {
+	
 	
 	private String userID;
 	private String userPassword;
@@ -13,6 +14,9 @@ public class UserDTO {
 	private String addr1;
 	private String addr2;
 	private String addr3;
+	private int kakaoAuth;
+	private int naverAuth;
+	
 	
 	public String getUserID() {
 		return userID;
@@ -32,7 +36,6 @@ public class UserDTO {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	
 	public String getResult() {
 		return result;
 	}
@@ -75,14 +78,17 @@ public class UserDTO {
 	public void setAddr3(String addr3) {
 		this.addr3 = addr3;
 	}
-	
-	
-	
-	@Override
-	public String toString() {
-		return "UserDTO [userID=" + userID + ", userPassword=" + userPassword + ", userName=" + userName + ", result="
-				+ result + ", email=" + email + ", phoneNumber=" + phoneNumber + ", birth=" + birth + ", addr1=" + addr1
-				+ ", addr2=" + addr2 + ", addr3=" + addr3 + "]";
+	public int getKakaoAuth() {
+		return kakaoAuth;
+	}
+	public void setKakaoAuth(int kakaoAuth) {
+		this.kakaoAuth = kakaoAuth;
+	}
+	public int getNaverAuth() {
+		return naverAuth;
+	}
+	public void setNaverAuth(int naverAuth) {
+		this.naverAuth = naverAuth;
 	}
 	
 	

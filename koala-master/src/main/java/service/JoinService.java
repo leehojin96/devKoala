@@ -7,17 +7,17 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import dao.UserDao;
-import dto.UserDTO;
+import dto.UserDto;
 
 public class JoinService {
 	
 	@Autowired
 	UserDao userDao;
 	
-	public Map<String, Object> join(UserDTO userDTO) { // dto받음  ,
+	public Map<String, Object> join(UserDto userDto) { // dto받음  ,
 		Map<String, Object> map = new HashMap<String, Object>(); 
 		
-		if (userDao.verifyUserID(userDTO.getUserID()).equals("1")) { // 1 : db에 데이터존재 0:데이터유효라고 명시해줌
+		if (userDao.verifyUserID(userDto.getUserID()).equals("1")) { // 1 : db에 데이터존재 0:데이터유효라고 명시해줌
 			map.put("status", false); //"status", false :실패 , "status값",true:성공
 			map.put("message", "중복된 아이디입니다.");
 		}
@@ -25,11 +25,11 @@ public class JoinService {
 			//map.put("status", false);
 			//map.put("message", "중복된 이메일입니다.");
 		//} 
-		else if (userDao.verifyUserPhoneNumber(userDTO) == 1) {
+		else if (userDao.verifyUserPhoneNumber(userDto) == 1) {
 			map.put("status", false);
 			map.put("message", "중복된 전화번호입니다.");
 		} else {
-			if (userDao.join(userDTO)) {
+			if (userDao.join(userDto)) {
 				map.put("status", true);
 				map.put("message", "확인되었습니다.");
 			} else {

@@ -41,6 +41,7 @@
 				config.ControllerConfig
 				config.AladinApiConfig
 				config.BoardConfig
+				config.LoginApiConfig
 			</param-value>
 		</init-param>
 

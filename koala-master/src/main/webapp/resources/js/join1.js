@@ -114,7 +114,7 @@ function formSubmit() {
 			if (response.status) {
 				alert('회원가입 성공!');
 				//로그인 페이지로 이동
-				location.href="/koala/login";
+				location.href="/koala/user/login";
 
 			} else {
 				if (response.message !== undefined) {
@@ -177,10 +177,14 @@ function CheckUserPassword() {
 }
 userPassword.addEventListener('input', CheckUserPassword);
 
+
 // 사용자 비밀번호 확인 검증
 function checkUserPasswordConfirm() {
 	let error = userForm.querySelector('#error-userPasswordConfirm');
-	
+	if (userPasswordConfirm.value === '') {
+		error.textContent = '';
+		return false;
+	}
 	if (userPassword.value !== userPasswordConfirm.value) {
 		error.textContent = '비밀번호가 일치하지 않습니다.';
 		return false;
@@ -190,6 +194,7 @@ function checkUserPasswordConfirm() {
 	return true;
 }
 userPasswordConfirm.addEventListener('input', checkUserPasswordConfirm);
+userPassword.addEventListener('input', checkUserPasswordConfirm);
 
 // 사용자 이름 검증
 function checkUserName() {

@@ -224,7 +224,7 @@ h4 img{
 						<label>이름</label>
 						<div>
 							<input type="text"  name="userName" id="userName"
-								maxlength="20" autocomplete="off">
+								maxlength="20" autocomplete="off" value="${userInfo.nickname}">
 						</div>
 						<p class="error" id="error-userName"></p>
 					</div>
@@ -306,7 +306,7 @@ h4 img{
 		</div>
 	</div>
 
-	<script src="${path}/resources/js/join.js"></script>
+	<script src="${path}/resources/js/join1.js"></script>
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 	
 </body>

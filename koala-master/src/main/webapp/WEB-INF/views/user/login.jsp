@@ -10,9 +10,8 @@
 <title>Insert title here</title>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
-
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.4.0/kakao.min.js" integrity="sha384-mXVrIX2T/Kszp6Z0aEWaA8Nm7J6/ZeWXbL8UpGRjKwWe56Srd/iyNmWMBhcItAjH" crossorigin="anonymous"></script>
 <script>
 let password_hide=1;
 function typeChange(){
@@ -47,45 +46,15 @@ function check(){
 }
 
 <!-- 카카오 스크립트 -->
-
-Kakao.init('cd19a2be4e5a00bdbf0cb07a178907dc'); //발급받은 키 중 javascript키를 사용해준다.
+/*
+ Kakao.init('5dc3fb6bc3e67d507cc996e1a4a49ec6'); //발급받은 키 중 javascript키를 사용해준다.
 console.log(Kakao.isInitialized()); // sdk초기화여부판단
-//카카오로그인
-function kakaoLogin() {
-    Kakao.Auth.login({
-      success: function (response) {
-        Kakao.API.request({
-          url: '/v2/user/me',
-          success: function (response) {
-          	
-          	let account = response.kakao_account;
-        	  
-        	let id = response.id;
-        	let email = account.email;
-        	let nickname= account.profile.nickname;
-        	let gender = account.gender;
 
-        	
-        	
-        	$('#form-kakao-login input[name=id]').val(id);
-			$('#form-kakao-login input[name=email]').val(email);
-			$('#form-kakao-login input[name=nickname]').val(nickname);
-			$('#form-kakao-login input[name=gender]').val(gender);
-          	
-  			// 사용자 정보가 포함된 폼을 서버로 제출한다.
-  			document.querySelector('#form-kakao-login').submit();
-  			
-          },
-          fail: function (error) {
-            console.log(error)
-          },
-        })
-      },
-      fail: function (error) {
-        console.log(error)
-      },
-    })
-  }
+function kakaoLogin() {
+	Kakao.Auth.authorize({
+	      redirectUri: 'http://localhost:8080/koala/kakaoLogin',
+	    });
+}*/
 
 
 </script>
@@ -283,7 +252,7 @@ main .password_img{
    
                              <div class="sns_login">
                                 <div id="naverIdLogin" class="naver_btn"></div>
-                                <a href="#"><img class="kakao_btn" id="btn-kakao-login" src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt="" onclick="kakaoLogin()"></a>
+                                  <a href="https://kauth.kakao.com/oauth/authorize?client_id=5dc3fb6bc3e67d507cc996e1a4a49ec6&redirect_uri=http://localhost:8080/koala/kakaoLogin&response_type=code"><img class="kakao_btn" id="btn-kakao-login" src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt="" ></a>
                              </div>
                              
                              <a href="<c:url value='/user/join' />"class="join_a">회원가입</a>

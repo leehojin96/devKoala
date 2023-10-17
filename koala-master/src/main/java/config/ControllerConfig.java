@@ -9,6 +9,7 @@ import controller.BooksViewController;
 import controller.ChangePwController;
 import controller.FindController;
 import controller.JoinController;
+import controller.KakaoLoginController;
 import controller.KoalaController;
 import controller.LoginController;
 import controller.MyPageController;
@@ -79,6 +80,10 @@ public class ControllerConfig {
 		return new PopUpLoginController();
 	}
 	
+	@Bean
+	public KakaoLoginController kakaoLoginController() {
+		return new KakaoLoginController();
+	}
 	
 
 }

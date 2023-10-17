@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import dto.UserDTO;
+import dto.UserDto;
 import service.JoinService;
 
 @Controller
@@ -27,9 +27,9 @@ public class JoinController {
     
     @ResponseBody
     @RequestMapping( value = "/create", method = RequestMethod.POST )
-    public Map<String, Object> joinSubmit(@RequestBody UserDTO userDTO) {
+    public Map<String, Object> joinSubmit(@RequestBody UserDto userDto) {
     	//System.out.println("!!!");
-    	Map<String, Object> map = joinService.join(userDTO); 
+    	Map<String, Object> map = joinService.join(userDto); 
     	return map;
     }
     

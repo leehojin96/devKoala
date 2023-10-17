@@ -99,11 +99,6 @@ public class BoarderController {
 	
 	
 	
-	
-	
-	
-	
-	
 	//게시글 이동
 	@RequestMapping(value = "/showDetail", method = RequestMethod.GET)
 	public String showDetail(HttpServletRequest httpServletRequest, Model m) {

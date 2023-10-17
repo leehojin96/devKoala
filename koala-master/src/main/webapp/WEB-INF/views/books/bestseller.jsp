@@ -51,7 +51,8 @@
 										},
 										error : function() {
 											$("#bookEmpty").html("");
-											$("#selectState4").html("도서를 지원하지 않습니다... ");
+											$("#selectState4").html(
+													"도서를 지원하지 않습니다... ");
 											$("#paging").html("");
 										}
 									});
@@ -66,7 +67,9 @@
 							for (let i = 0; i < data.length; i++) {
 								let item = data[i];
 								str += "<a href="
-										+ "javascript:detail('" + item.isbn + "') "
+										+ "javascript:detail('"
+										+ item.isbn
+										+ "') "
 										+ "onmouseenter='zoomIn(event)' onmouseleave='zoomOut(event)'>" // 마우스 호버 애니메이션
 										+ "<div id='book'>"
 										+ "<div id='bookImg'>"
@@ -87,112 +90,123 @@
 							totalPage = data_totalBooks / 50;
 							if (totalPage % 1 != 0)
 								totalPage++;
-							
-							totalPage = totalPage/1;
+
+							totalPage = totalPage / 1;
 							console.log(totalPage);
-							
-							
+
 							let str = "";
-							
+
 							// 한 파트에 6개 이상 페이지 보일 수 있는 경우
-							if((startPart+1)*6 <= totalPage){				
-								for (let i = 1+(startPart*6); i <= 6+(startPart*6) ; i++) {
-									if(start==i)
-									str += "<input class='pageBtn' type='button' style='font-weight : 900 ;' value='"+i+"'/>";
+							if ((startPart + 1) * 6 <= totalPage) {
+								for (let i = 1 + (startPart * 6); i <= 6 + (startPart * 6); i++) {
+									if (start == i)
+										str += "<input class='pageBtn' type='button' style='font-weight : 900 ;' value='"+i+"'/>";
 									else
-									str += "<input class='pageBtn' type='button' value='"+i+"'/>";
-									}
-							}else{ // 한 파트에 6개 미만 페이지 보일 수 있는 경우 : 마지막 파트를 위한 코드
-								for (let i = 1+(startPart*6); i <= totalPage ; i++) {
-									if(start==i)
-									str += "<input class='pageBtn' type='button' style='font-weight : 900 ;' value='"+i+"'/>";
+										str += "<input class='pageBtn' type='button' value='"+i+"'/>";
+								}
+							} else { // 한 파트에 6개 미만 페이지 보일 수 있는 경우 : 마지막 파트를 위한 코드
+								for (let i = 1 + (startPart * 6); i <= totalPage; i++) {
+									if (start == i)
+										str += "<input class='pageBtn' type='button' style='font-weight : 900 ;' value='"+i+"'/>";
 									else
-									str += "<input class='pageBtn' type='button' value='"+i+"'/>";
-									}
+										str += "<input class='pageBtn' type='button' value='"+i+"'/>";
+								}
 							}
 							return str;
-							}
-						
+						}
+
 						//첫 로드
-						showList(start,categoryId);
-						 
+						showList(start, categoryId);
+
 						//페이지 번호 클릭시 
 						$(document).on('click', '.pageBtn', function() {
 							start = this.value;
 							showList(start, categoryId);
 							window.scrollTo(0, 0);
 						});
-						
+
 						//partBtn 클릭시
 						$(document).on('click', '.partBtn', function() {
-							
-							if(this.value == '<'){
+
+							if (this.value == '<') {
 								//첫번째 part일 경우 1페이지로								
-								if(startPart == 0){
-									start=1;
+								if (startPart == 0) {
+									start = 1;
 									window.scrollTo(0, 0);
 									showList(start, categoryId);
-									
-								}else{ //그 외 이전 파트의 첫번째 페이지로
+
+								} else { //그 외 이전 파트의 첫번째 페이지로
 									startPart--;
-									start = startPart*6 + 1;
+									start = startPart * 6 + 1;
 									showList(start, categoryId);
 									window.scrollTo(0, 0);
 								}
-							}else{
-								if(this.value == '>'){
+							} else {
+								if (this.value == '>') {
 									//마지막 part일 경우 마지막 페이지로
-									if(1 > totalPage/6 - startPart){
-										start = totalPage - totalPage%1;
+									if (1 > totalPage / 6 - startPart) {
+										start = totalPage - totalPage % 1;
 										showList(start, categoryId);
 										window.scrollTo(0, 0);
-										
-									}else{ // 그 외 다음 파트의 첫번째 페이지로
+
+									} else { // 그 외 다음 파트의 첫번째 페이지로
 										startPart++;
-										start = startPart*6 + 1;
+										start = startPart * 6 + 1;
 										showList(start, categoryId);
 										window.scrollTo(0, 0);
 									}
 								}
 							}
 						});
-							
-						
-						//대분류 카테고리 클릭시
-						$(document).on('click', ".selectInput", function() {
-							$(".Middle").hide();
-							categoryId = this.value;
-							start = 1;
-							window.scrollTo(0,0); 	
-							showList(start,categoryId);
-							$("."+this.value).show();
-							$("#"+this.value+"Middle").prop('checked',true);
-							$("#selectState2").html(" > "+$("#"+this.value+"Top").next().text());
-							if(categoryId == '0'){								
-							$("#selectState3").html("");
-							}else{
-								$("#selectState3").html(" > 전체");
-							}
-						});
-						
-						//소분류 카테고리 클릭시
-						$(document).on('click', ".selectMiddle", function() {
-							categoryId = this.value;
-							start = 1;
-							window.scrollTo(0,0); 	
-							showList(start,categoryId);
-							let a = $("input[id="+this.value+"Middle]:checked").next().text();
-							$("#selectState2").html(""+a);
-						});
 
-						
+						//대분류 카테고리 클릭시
+						$(document).on(
+								'click',
+								".selectInput",
+								function() {
+									$(".Middle").hide();
+									categoryId = this.value;
+									start = 1;
+									window.scrollTo(0, 0);
+									showList(start, categoryId);
+									$("." + this.value).show();
+									$("#" + this.value + "Middle").prop(
+											'checked', true);
+									$("#selectState2").html(
+											" > "
+													+ $(
+															"#" + this.value
+																	+ "Top")
+															.next().text());
+									if (categoryId == '0') {
+										$("#selectState3").html("");
+									} else {
+										$("#selectState3").html(" > 전체");
+									}
+								});
+
+						//소분류 카테고리 클릭시
+						$(document).on(
+								'click',
+								".selectMiddle",
+								function() {
+									categoryId = this.value;
+									start = 1;
+									window.scrollTo(0, 0);
+									showList(start, categoryId);
+									let a = $(
+											"input[id=" + this.value
+													+ "Middle]:checked").next()
+											.text();
+									$("#selectState2").html("" + a);
+								});
+
 					});
-	
+
 	//도서 클릭시
 	function detail(isbn) {
 		window.location.href = "/koala/books/Detail?isbn=" + isbn;
 	}
-	
 </script>
 
 
@@ -200,7 +214,7 @@
 <body>
 
 
-	
+
 
 	<%@ include file="booksList.jsp"%>
 

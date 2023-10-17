@@ -232,21 +232,21 @@ header .menu .menu_wrap .mainmenu a {
 							src="https://www.data4library.kr/resources/img/background/g_home_icon.gif"
 							class="home_icon">home</a> </span> <span>|</span>
 					<c:choose>
-						<c:when test="${userID == null }">
+						<c:when test="${userId == null }">
 							<span><a href="/koala/user/login">로그인</a></span>
 							<span>|</span>
 							<span><a href="/koala/user/join">회원가입 </a></span>
 						</c:when>
 						
 						
-						<c:when test="${userID != null && logintype == '0' }">
+						<c:when test="${userId != null && loginType == '0' }">
 						<span><a href="/koala/mypageenter">마이페이지</a></span>
 						<span>|</span>
 							<span><a href="/koala/user/logout">로그아웃</a></span>
 							<span>|</span> <span><a href="javascript:chatPopupOpen();">고객센터</a></span>
 						</c:when>
 
-						<c:when test="${userID != null && logintype == '1' }">
+						<c:when test="${userId != null && loginType == '1' }">
 						<span><a href="/koala/mypageenter">마이페이지</a></span>
 						<span>|</span>
 							<span><a style="cursor: pointer" onclick="kakaoLogout()">카카오
@@ -254,7 +254,7 @@ header .menu .menu_wrap .mainmenu a {
 									<span>|</span> <span><a href="javascript:chatPopupOpen();">고객센터</a></span>
 						</c:when>
 
-						<c:when test="${userID != null && logintype == '2' }">
+						<c:when test="${userId != null && loginType == '2' }">
 						<span><a href="/koala/mypageenter">마이페이지</a></span>
 						<span>|</span>
 							<span><a style="cursor: pointer" onclick="naverLogout()"

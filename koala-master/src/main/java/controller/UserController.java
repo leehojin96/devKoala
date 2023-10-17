@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import dto.UserDTO;
+import dto.UserDto;
 import service.UserService;
 
 @Controller
@@ -23,16 +23,16 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping( value = "/verify", method = RequestMethod.POST )
-    public Map<String, Object> verify(@RequestBody UserDTO userDTO) {
+    public Map<String, Object> verify(@RequestBody UserDto userDto) {
     	Map<String, Object> map = new HashMap<String, Object>(); 
     	System.out.println("verify 도착");
-    	map.put("status", userService.verifyUserID(userDTO.getUserID()));
+    	map.put("status", userService.verifyUserID(userDto.getUserID()));
     	//userService통해 회원가입요청
     	return map;
     }
     
     @RequestMapping( value = "/myPage" , method = RequestMethod.GET )
-    public String myPage() throws Exception{
+    public static String myPage() throws Exception{
         return "user/myPage";
     }
     
@@ -44,9 +44,9 @@ public class UserController {
     
     @ResponseBody
     @RequestMapping( value = "/userDelete", method = RequestMethod.POST )
-    public Map<String, Object> userDelete(@RequestBody UserDTO userDTO) {
+    public Map<String, Object> userDelete(@RequestBody UserDto userDto) {
     	Map<String, Object> map = new HashMap<String, Object>(); 
-    	map.put("status", userService.verifyUserPassword(userDTO));
+    	map.put("status", userService.verifyUserPassword(userDto));
     	
     	return map;
     }
@@ -54,12 +54,12 @@ public class UserController {
   
     @ResponseBody
     @RequestMapping( value = "/userlist", method = RequestMethod.GET )
-    public UserDTO myPage(  String userID  ) {
+    public UserDto myPage(  String userID  ) {
   	
-    	UserDTO userDTO =   userService.list(userID);
+    	UserDto userDto =   userService.list(userID);
     	
-    	return userDTO;
+    	return userDto;
     }
-    
+   
     
 }
